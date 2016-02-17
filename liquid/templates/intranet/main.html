@@ -1,0 +1,69 @@
+{% extends "intranet/base.html" %}
+{% block intranet_content %}
+<header class="page-header">
+<h1>Welcome, {{user.full_name}}</h1>
+</header>
+<div class="row">
+   <div class="span3">
+      <p>You are a member of:
+         <ul>
+         {% for g in groups %}
+            <li>{{g.name}}</li>
+         {% endfor %}
+         </ul>
+      </p>
+   </div>
+   <div class="span3">
+      <p>You are on the mailing lists:
+         <ul>
+         {% for l in user.list_set.all %}
+            <li>{{ l.name }}</li>
+         {% endfor %}
+         </ul>
+      </p>
+   </div>
+   <div class="span3">
+      <p>Balance: ${{ user.get_vending.balance }}</p>
+   </div>
+</div>
+
+<div class="notif-row row">
+   {% if user.is_top4%}
+
+   {% if pend_jobs_count %}
+   <div class="alert alert-{{pend_class}}">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {% if pend_jobs_count == 1 %}
+         There is a job to be approved!
+      {% else %}
+         There are <strong> {{pend_jobs_count}} </strong> jobs to be approved!
+      {% endif %}
+   </div>
+   {% endif %}
+
+   {% if unsent_jobs_count %}
+   <div class="alert alert-{{unsent_class}}">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {% if unsent_jobs_count == 1 %}
+         There is a job to be sent!
+      {% else %}
+         There are <strong> {{unsent_jobs_count}} </strong> jobs to be sent!
+      {% endif %}
+   </div>
+   {% endif %}
+
+   {% if resume_count %}
+   <div class="alert alert-{{res_class}}">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {% if resume_count == 1 %}
+         There is a resume to be approved!
+      {% else %}
+         There are <strong> {{resume_count}} </strong> resumes to be approved!
+      {% endif %}
+   </div>
+   {% endif %}
+
+  {% endif %}
+</div>
+
+{% endblock %}

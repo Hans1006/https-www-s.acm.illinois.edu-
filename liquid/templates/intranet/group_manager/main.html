@@ -1,0 +1,39 @@
+{% extends "intranet/base.html" %}
+{% block intranet_content %}
+<header class="page-header">
+<h1>Group Manager</h1>
+</header>
+{% if user.is_top4 or user.is_acm_admin %}
+<p>
+	<a href="/intranet/group/new" class="btn">Create New Group</a>
+</p>
+{% endif %}
+{% if groups %}
+<table class="table table-striped">
+  <thead>
+  <tr>
+  	<th>Edit</td>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Members</th>
+    <th>Manage</th>
+  <tr>
+  </thead>
+  <tbody>
+  {% for g in groups %}
+  <tr>
+  	<td><a href="/intranet/group/edit/{{g.id}}"><i class="icon-edit"></i> Edit</a></td>
+    <td>{{g.get_type_display}}</td>
+    <td>{{g.name}}</td>
+    <td>{{g.status}}</td>
+    <td>{{g.members.count}} ({{g.active_members.count}} active)</td>
+    <td><a href="/intranet/group/manage/{{g.id}}"><i class="icon-cog"></i> Manage</a>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>You are not the admin of any ACM group.</p>
+{% endif %}
+{% endblock %}

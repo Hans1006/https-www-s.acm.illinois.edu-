@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block content %}
+<div class="row">
+  <div class="span4">
+  <form class="well" method="post">
+  {% csrf_token %}
+  {{ form|bootstrap }}
+  <div class="control-group">
+    <div class="controls">
+      <input type="hidden" name="next" value="{{ next }}" />
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </div>
+  </form>
+</div>
+<div class="span6">
+  <p>Your username is your NetID. Your password is your Campus Active Directory password.</p>
+  <p>You must be an ACM Member to log into the ACM Intranet. If you are not currently a member, please consider <a href='/about/join'>joining ACM@UIUC</a>!</p>
+</div>
+</div>
+{% endblock %}

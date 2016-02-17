@@ -1,0 +1,18 @@
+.company-card {
+  width: 23%;
+  height: 36%;
+  margin: 5px;
+  background: #fff;
+  padding: 10px;
+  opacity: .7;
+}
+
+.company-card:hover {
+	opacity: 1;
+}
+
+.company-card img {
+  margin: 0 auto;
+  display: block;
+  max-height: 100%;
+}

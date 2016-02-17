@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="page-header">
+<h1>Special Interest Groups</h1>
+</header>
+{% for s in sigs %}
+<div class="row">
+	<div class="span3">
+		<img src="{{s.logo}}" width="220">
+	</div>
+	<div class="span9">
+		<h2>{{s.name}}</h2>
+		<p>{{s.description}}</p>
+		<p>Chairs: {{s.chairs}}</p>
+		<p>
+			<strong>Meetings:</strong><br>
+			{{s.get_meeting_day_display}} {{s.meeting_time}}<br>
+			{{s.meeting_location}}
+		</p>
+		<p>
+			<a href="/sigs/{{s.id}}">More info >></a>
+		</p>
+	</div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

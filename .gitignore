@@ -1,0 +1,9 @@
+*.pyc
+database
+env/
+fabfile.py
+liquid/local_settings.py
+*.sql
+*.sass-cache/
+.idea/
+*~
